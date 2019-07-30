@@ -1,9 +1,13 @@
 import ckan.plugins as plugins
 import ckan.plugins.toolkit as toolkit
 
+from ckanext.mailchimp.logic.action.create import mailchimp_user_create
+from ckanext.mailchimp.logic.action.update import mailchimp_user_update
+
 
 class MailchimpPlugin(plugins.SingletonPlugin):
-    plugins.implements(plugins.IConfigurer)
+    plugins.implements(plugins.IConfigurer, inherit=True)
+    plugins.implements(plugins.IActions, inherit=True)
 
     # IConfigurer
 
@@ -11,3 +15,10 @@ class MailchimpPlugin(plugins.SingletonPlugin):
         toolkit.add_template_directory(config_, 'templates')
         toolkit.add_public_directory(config_, 'public')
         toolkit.add_resource('fanstatic', 'mailchimp')
+
+    # IActions
+    def get_actions(self):
+        return {
+            'user_create': mailchimp_user_create,
+            'user_update': mailchimp_user_update
+        }
