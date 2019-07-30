@@ -21,7 +21,7 @@ setup(
     long_description=long_description,
 
     # The project's main homepage.
-    url='https://github.com//ckanext-mailchimp',
+    url='https://github.com/belgium-its-steering-committee/ckanext-mailchimp',
 
     # Author details
     author='''Bart Saelen''',
