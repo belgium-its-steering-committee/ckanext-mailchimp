@@ -1,7 +1,8 @@
 <div class="box stats">
   <div class="inner">
     <h3>{{ _('Subscribe to the mailing list') }}</h3>
-        <form id="subscribe-mailinglist-form" class="dataset-form" method="post" action="">
+        <!--form id="subscribe-mailinglist-form" class="dataset-form" method="post" action="{% url_for 'subscribe' %}"-->
+        <form id="subscribe-mailinglist-form" class="dataset-form" method="post" action="/newsletter/subscribe">
             <p>{{ _('submit email for newsletter') }}</p>
             <input id="contact-email" type="text" name="email" value="" placeholder="joe@example.com" class="form-control">
             <br/>

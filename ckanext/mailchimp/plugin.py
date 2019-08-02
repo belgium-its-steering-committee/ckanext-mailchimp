@@ -8,6 +8,7 @@ from ckanext.mailchimp.logic.action.update import mailchimp_user_update
 class MailchimpPlugin(plugins.SingletonPlugin):
     plugins.implements(plugins.IConfigurer, inherit=True)
     plugins.implements(plugins.IActions, inherit=True)
+    plugins.implements(plugins.IRoutes, inherit=True)
 
     # IConfigurer
 
@@ -22,3 +23,11 @@ class MailchimpPlugin(plugins.SingletonPlugin):
             'user_create': mailchimp_user_create,
             'user_update': mailchimp_user_update
         }
+
+    # IRoutes
+
+    def before_map(self, m):
+        m.connect('/newsletter/subscribe',
+                     controller='ckanext.mailchimp.controller:NewsletterController',
+                     action='subscribe')
+        return m
