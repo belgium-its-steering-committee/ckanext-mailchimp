@@ -31,6 +31,9 @@ class MailChimpClient(object):
         if tags and len(tags) > 0:
             create_data["tags"] = []
             for tag in tags:
+                print("#"*23)
+                print(tag)
+                print(str(tag))
                 tag_obj = {"name": tag}
                 create_data["tags"].append(tag_obj)
         response = requests.post("{0}/lists/{1}/members".format(self.base_url, self.member_list_id),
