@@ -10,17 +10,18 @@ def mailchimp_user_create(context, data_dict):
 
     if user is not None and data_dict is not None and data_dict.get('newsletter', None) == 'subscribed':
         split_names = name_splitter(data_dict.get('fullname', data_dict.get('name', None)))
-        mailchimp_add_subscriber(split_names[0], split_names[1], data_dict.get('email', None))
+        mailchimp_add_subscriber(split_names[0], split_names[1], data_dict.get('email', None), tags=["NAP-user"])
     return user
 
 
-def mailchimp_add_subscriber(firstname, lastname, email):
+def mailchimp_add_subscriber(firstname, lastname, email, tags=None):
     """
     if user is not already in mailchimp add user to mailchimp
 
     :param firstname: first name of the subscriber
     :param lastname: last name of the subscriber
     :param email: email of the subscriber
+    :param tags: array of tags for the subscriber -> https://mailchimp.com/help/manage-tags/
     :return: True if successful, False if not
     """
     mailchimp_client = MailChimpClient(
@@ -33,5 +34,6 @@ def mailchimp_add_subscriber(firstname, lastname, email):
         return mailchimp_client.create_new_subscriber(
             firstname,
             lastname,
-            email
+            email,
+            tags
         )

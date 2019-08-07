@@ -2,6 +2,7 @@ from ckan.common import config
 from ckan.logic.action.update import user_update
 
 from ckanext.mailchimp.logic.mailchimp import MailChimpClient
+from ckanext.mailchimp.util import name_splitter
 
 
 def mailchimp_user_update(context, data_dict):
@@ -16,7 +17,9 @@ def mailchimp_user_update(context, data_dict):
         if data_dict.get('newsletter', None) == 'subscribed':
             # if user is not already in mailchimp add user to mailchimp
             if mailchimp_client.find_subscriber_by_email(data_dict.get('email', None)) is None:
-                mailchimp_client.create_new_subscriber(data_dict.get('name', None), data_dict.get('email', None))
+                split_names = name_splitter(data_dict.get('fullname', data_dict.get('name', None)))
+                mailchimp_client.create_new_subscriber(
+                    split_names[0], split_names[1], data_dict.get('email', None), tags=["NAP-user"])
         elif data_dict.get('newsletter', None) is None or data_dict.get('newsletter', None) == '':
             # if user is already in mailchimp remove user from mailchimp
             if mailchimp_client.find_subscriber_by_email(data_dict.get('email', None)) is not None:

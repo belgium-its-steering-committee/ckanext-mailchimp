@@ -14,7 +14,7 @@ class NewsletterController(HomeController):
         email = request.params.get('email', None)
         if email and validate_email(email):
             names = name_from_email(email)
-            success = mailchimp_add_subscriber(names[0], names[1], email)
+            success = mailchimp_add_subscriber(names[0], names[1], email, tags=["Mailinglist-user"])
             if success:
                 flash_success("Successfully added to mailing list")
             else:
