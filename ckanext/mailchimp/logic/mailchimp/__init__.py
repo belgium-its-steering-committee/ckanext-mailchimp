@@ -22,7 +22,7 @@ class MailChimpClient(object):
     def create_new_subscriber(self, firstname, lastname, email, tags=None):
         create_data = {
             "email_address": email,
-            "status": "subscribed",
+            "status": "pending",
             "merge_fields": {
                 "FNAME": firstname,
                 "LNAME": lastname
