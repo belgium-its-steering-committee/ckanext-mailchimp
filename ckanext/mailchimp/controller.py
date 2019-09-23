@@ -14,11 +14,11 @@ class NewsletterController(HomeController):
         email = request.params.get('email', None)
         if email and validate_email(email):
             names = name_from_email(email)
-            success = mailchimp_add_subscriber(names[0], names[1], email, tags=["Mailinglist-user"])
+            success, msg = mailchimp_add_subscriber(names[0], names[1], email, tags=["Mailinglist-user"])
             if success:
-                flash_success("Successfully added to mailing list")
+                flash_success(msg)
             else:
-                flash_error("An error occurred while adding you to the mailing list")
+                flash_error(msg)
         else:
             flash_error("Please provide a valid email address!")
         return super(NewsletterController, self).index()

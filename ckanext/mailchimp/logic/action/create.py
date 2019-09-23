@@ -31,9 +31,15 @@ def mailchimp_add_subscriber(firstname, lastname, email, tags=None):
     )
 
     if mailchimp_client.find_subscriber_by_email(email) is None:
-        return mailchimp_client.create_new_subscriber(
+        success = mailchimp_client.create_new_subscriber(
             firstname,
             lastname,
             email,
             tags
         )
+        if success:
+            return True, "Successfully added to mailing list."
+        else:
+            return False, "An error occurred while adding you to the mailing list."
+    else:
+        return False, "You already suscribed to the newsletter."
