@@ -45,3 +45,14 @@ class MailChimpClient(object):
                 "{0}/lists/{1}/members/{2}".format(self.base_url, self.member_list_id, subscriber["id"]),
                 headers=self.headers
             )
+
+    def update_subscriber_tags(self, subscriber_id, tags):
+        tag_objects = [{"name": tag, "status": "active"} for tag in tags]
+        response = requests.post(
+                "{0}/lists/{1}/members/{2}/tags".format(self.base_url, self.member_list_id, subscriber_id),
+                json.dumps({"tags": tag_objects}),
+                headers=self.headers
+            )
+        if response.status_code not in [200, 201, 204]:
+            self.logger.error(response.text)
+        return True if response.status_code in [200, 201, 204] else False

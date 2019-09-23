@@ -30,7 +30,8 @@ def mailchimp_add_subscriber(firstname, lastname, email, tags=None):
         member_list_id=config.get('ckan.mailchimp.member_list_id', None)
     )
 
-    if mailchimp_client.find_subscriber_by_email(email) is None:
+    subscriber = mailchimp_client.find_subscriber_by_email(email)
+    if subscriber is None:
         success = mailchimp_client.create_new_subscriber(
             firstname,
             lastname,
@@ -42,4 +43,10 @@ def mailchimp_add_subscriber(firstname, lastname, email, tags=None):
         else:
             return False, "An error occurred while adding you to the mailing list."
     else:
-        return False, "You already suscribed to the newsletter."
+        subscriber_tags = [tag.get('name', '') for tag in subscriber.get('tags', [])]
+        merged_tags = subscriber_tags + tags if tags else subscriber_tags
+        success = mailchimp_client.update_subscriber_tags(subscriber.get('id', None), merged_tags)
+        if success:
+            return False, "You already suscribed to the newsletter."
+        else:
+            return False, "An error occurred while adding you to the mailing list."
