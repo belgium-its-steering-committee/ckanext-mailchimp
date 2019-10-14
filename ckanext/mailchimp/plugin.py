@@ -1,11 +1,13 @@
 import ckan.plugins as plugins
 import ckan.plugins.toolkit as toolkit
+from ckan.lib.plugins import DefaultTranslation
 
 from ckanext.mailchimp.logic.action.create import mailchimp_user_create
 from ckanext.mailchimp.logic.action.update import mailchimp_user_update
 
 
-class MailchimpPlugin(plugins.SingletonPlugin):
+class MailchimpPlugin(plugins.SingletonPlugin,  DefaultTranslation):
+    plugins.implements(plugins.ITranslation)
     plugins.implements(plugins.IConfigurer, inherit=True)
     plugins.implements(plugins.IActions, inherit=True)
     plugins.implements(plugins.IRoutes, inherit=True)
