@@ -21,133 +21,133 @@ msgstr ""
 
 #: ckanext/mailchimp/templates/home/snippets/contact.html:3
 msgid "Subscribe to the mailing list"
-msgstr ""
+msgstr "Inscrivez-vous à la liste de diffusion"
 
 #: ckanext/mailchimp/templates/home/snippets/contact.html:6
 msgid "submit email for newsletter"
-msgstr ""
+msgstr "Indiquez l'e-mail pour la lettre de diffusion"
 
 #: ckanext/mailchimp/templates/home/snippets/contact.html:12
 msgid "Subscribe"
-msgstr ""
+msgstr "Inscrivez-vous"
 
 #: ckanext/mailchimp/templates/home/snippets/newsletter.html:5
 msgid "SUBSCRIBE TO NEWSLETTER"
-msgstr ""
+msgstr "INSCRIVEZ-VOUS A LA LETTRE DE DIFFUSION"
 
 #: ckanext/mailchimp/templates/home/snippets/newsletter.html:10
 msgid "Enter your email address"
-msgstr ""
+msgstr "Indiquez votre adresse e-mail"
 
 #: ckanext/mailchimp/templates/home/snippets/newsletter.html:11
 msgid "SUBSCRIBE"
-msgstr ""
+msgstr "INSCRIVEZ-VOUS"
 
 #: ckanext/mailchimp/templates/user/edit_user_form.html:7
 msgid "Change details"
-msgstr ""
+msgstr "Changer les coordonnées"
 
 #: ckanext/mailchimp/templates/user/edit_user_form.html:8
 #: ckanext/mailchimp/templates/user/new_user_form.html:5
 msgid "Username"
-msgstr ""
+msgstr "Nom d'utilisateur"
 
 #: ckanext/mailchimp/templates/user/edit_user_form.html:10
 msgid "Full name"
-msgstr ""
+msgstr "Nom complet"
 
 #: ckanext/mailchimp/templates/user/edit_user_form.html:10
 msgid "eg. Joe Bloggs"
-msgstr ""
+msgstr "ex. Joe Bloggs"
 
 #: ckanext/mailchimp/templates/user/edit_user_form.html:12
 #: ckanext/mailchimp/templates/user/new_user_form.html:7
 msgid "Email"
-msgstr ""
+msgstr "e-mail"
 
 #: ckanext/mailchimp/templates/user/edit_user_form.html:12
 msgid "eg. joe@example.com"
-msgstr ""
+msgstr "ex. joe@exemple.com"
 
 #: ckanext/mailchimp/templates/user/edit_user_form.html:14
 msgid "About"
-msgstr ""
+msgstr "A propos"
 
 #: ckanext/mailchimp/templates/user/edit_user_form.html:14
 msgid "A little information about yourself"
-msgstr ""
+msgstr "Quelques informations sur vous"
 
 #: ckanext/mailchimp/templates/user/edit_user_form.html:17
 msgid "Subscribe to notification emails"
-msgstr ""
+msgstr "Inscrivez-vous aux e-mails de notification"
 
 #: ckanext/mailchimp/templates/user/edit_user_form.html:23
 #: ckanext/mailchimp/templates/user/new_user_form.html:10
 msgid "Subscribe to newsletter"
-msgstr ""
+msgstr "Inscrivez-vous à la lettre de diffusion"
 
 #: ckanext/mailchimp/templates/user/edit_user_form.html:29
 msgid "Change password"
-msgstr ""
+msgstr "Changer le mot de passe"
 
 #: ckanext/mailchimp/templates/user/edit_user_form.html:32
 msgid "Sysadmin Password"
-msgstr ""
+msgstr "Mot de passe administrateur système"
 
 #: ckanext/mailchimp/templates/user/edit_user_form.html:32
 msgid "Old Password"
-msgstr ""
+msgstr "Ancien mot de passe"
 
 #: ckanext/mailchimp/templates/user/edit_user_form.html:40
 #: ckanext/mailchimp/templates/user/new_user_form.html:8
 msgid "Password"
-msgstr ""
+msgstr "Mot de passe"
 
 #: ckanext/mailchimp/templates/user/edit_user_form.html:42
 msgid "Confirm Password"
-msgstr ""
+msgstr "Confirmer mot de passe"
 
 #: ckanext/mailchimp/templates/user/edit_user_form.html:48
 msgid "Are you sure you want to delete this User?"
-msgstr ""
+msgstr "Êtes-vous sûr de vouloir supprimer cet Utilisateur?"
 
 #: ckanext/mailchimp/templates/user/edit_user_form.html:48
 msgid "Delete"
-msgstr ""
+msgstr "Supprimer"
 
 #: ckanext/mailchimp/templates/user/edit_user_form.html:53
 msgid "Are you sure you want to regenerate the API key?"
-msgstr ""
+msgstr "Êtes-vous sûr de vouloir recompiler la clé API?"
 
 #: ckanext/mailchimp/templates/user/edit_user_form.html:53
 msgid "Regenerate API Key"
-msgstr ""
+msgstr "Recompiler clé API"
 
 #: ckanext/mailchimp/templates/user/edit_user_form.html:57
 msgid "Update Profile"
-msgstr ""
+msgstr "Mise à jour du profil"
 
 #: ckanext/mailchimp/templates/user/new_user_form.html:5
 msgid "username"
-msgstr ""
+msgstr "nom d'utilisateur"
 
 #: ckanext/mailchimp/templates/user/new_user_form.html:6
 msgid "Full Name"
-msgstr ""
+msgstr "Nom complet"
 
 #: ckanext/mailchimp/templates/user/new_user_form.html:6
 msgid "Joe Bloggs"
-msgstr ""
+msgstr "Joe Bloggs"
 
 #: ckanext/mailchimp/templates/user/new_user_form.html:7
 msgid "joe@example.com"
-msgstr ""
+msgstr "joe@exemple.com"
 
 #: ckanext/mailchimp/templates/user/new_user_form.html:9
 msgid "Confirm"
-msgstr ""
+msgstr "Confirmer"
 
 #: ckanext/mailchimp/templates/user/new_user_form.html:20
 msgid "Create Account"
-msgstr ""
+msgstr "Créer Compte"
 
