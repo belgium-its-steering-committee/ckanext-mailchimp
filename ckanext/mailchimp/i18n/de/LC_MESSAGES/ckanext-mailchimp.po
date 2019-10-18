@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ckanext-mailchimp 0.0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-09-20 14:10+0200\n"
+"POT-Creation-Date: 2019-10-18 15:21+0200\n"
 "PO-Revision-Date: 2019-09-20 14:10+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: de\n"
@@ -32,16 +32,19 @@ msgid "Subscribe"
 msgstr "Abonnieren Sie"
 
 #: ckanext/mailchimp/templates/home/snippets/newsletter.html:5
-msgid "SUBSCRIBE TO NEWSLETTER"
-msgstr "ABONNIEREN SIE DEN NEWSLETTER"
-
-#: ckanext/mailchimp/templates/home/snippets/newsletter.html:10
-msgid "Enter your email address"
-msgstr "Geben Ihre E-Mail an"
-
-#: ckanext/mailchimp/templates/home/snippets/newsletter.html:11
+#: ckanext/mailchimp/templates/home/snippets/newsletter.html:12
 msgid "SUBSCRIBE"
 msgstr "ABONNIEREN SIE"
+
+#: ckanext/mailchimp/templates/home/snippets/newsletter.html:6
+#, fuzzy
+#| msgid "Subscribe to newsletter"
+msgid "TO NEWSLETTER"
+msgstr "Abonnieren Sie den Newsletter"
+
+#: ckanext/mailchimp/templates/home/snippets/newsletter.html:11
+msgid "Enter your email address"
+msgstr "Geben Ihre E-Mail an"
 
 #: ckanext/mailchimp/templates/user/edit_user_form.html:7
 msgid "Change details"
@@ -81,49 +84,55 @@ msgstr "Angaben über Sie"
 msgid "Subscribe to notification emails"
 msgstr "Abonnieren Sie die E-Mail-Meldungen"
 
-#: ckanext/mailchimp/templates/user/edit_user_form.html:23
+#: ckanext/mailchimp/templates/user/edit_user_form.html:18
+msgid ""
+"You will receive notification emails from {site_title}, e.g. when you "
+"have new activities on your dashboard."
+msgstr "Sie werden E-Mail-Meldungen von {site_title} empfangen, zum B. wenn Sie neue Aktivitäten in Ihrem Dashboard haben."
+
+#: ckanext/mailchimp/templates/user/edit_user_form.html:22
 #: ckanext/mailchimp/templates/user/new_user_form.html:10
 msgid "Subscribe to newsletter"
 msgstr "Abonnieren Sie den Newsletter"
 
-#: ckanext/mailchimp/templates/user/edit_user_form.html:29
+#: ckanext/mailchimp/templates/user/edit_user_form.html:28
 msgid "Change password"
 msgstr "Passwort ändern"
 
-#: ckanext/mailchimp/templates/user/edit_user_form.html:32
+#: ckanext/mailchimp/templates/user/edit_user_form.html:31
 msgid "Sysadmin Password"
 msgstr "Passwort Systemadministrator"
 
-#: ckanext/mailchimp/templates/user/edit_user_form.html:32
+#: ckanext/mailchimp/templates/user/edit_user_form.html:31
 msgid "Old Password"
 msgstr "Ehemaliges Passwort"
 
-#: ckanext/mailchimp/templates/user/edit_user_form.html:40
+#: ckanext/mailchimp/templates/user/edit_user_form.html:39
 #: ckanext/mailchimp/templates/user/new_user_form.html:8
 msgid "Password"
 msgstr "Passwort"
 
-#: ckanext/mailchimp/templates/user/edit_user_form.html:42
+#: ckanext/mailchimp/templates/user/edit_user_form.html:41
 msgid "Confirm Password"
 msgstr "Passwort bestätigen"
 
-#: ckanext/mailchimp/templates/user/edit_user_form.html:48
+#: ckanext/mailchimp/templates/user/edit_user_form.html:47
 msgid "Are you sure you want to delete this User?"
 msgstr "Sind Sie sicher, dass Sie diesen Benutzer löschen wollen?"
 
-#: ckanext/mailchimp/templates/user/edit_user_form.html:48
+#: ckanext/mailchimp/templates/user/edit_user_form.html:47
 msgid "Delete"
 msgstr "Löschen"
 
-#: ckanext/mailchimp/templates/user/edit_user_form.html:53
+#: ckanext/mailchimp/templates/user/edit_user_form.html:52
 msgid "Are you sure you want to regenerate the API key?"
 msgstr "Sind Sie sicher, dass Sie den API-Schlüssel neu kompilieren wollen?"
 
-#: ckanext/mailchimp/templates/user/edit_user_form.html:53
+#: ckanext/mailchimp/templates/user/edit_user_form.html:52
 msgid "Regenerate API Key"
 msgstr "API-Schlüssel neu kompilieren"
 
-#: ckanext/mailchimp/templates/user/edit_user_form.html:57
+#: ckanext/mailchimp/templates/user/edit_user_form.html:56
 msgid "Update Profile"
 msgstr "Profil updaten"
 
@@ -150,4 +159,7 @@ msgstr "Bestätigen"
 #: ckanext/mailchimp/templates/user/new_user_form.html:20
 msgid "Create Account"
 msgstr "Account anlegen"
+
+#~ msgid "SUBSCRIBE TO NEWSLETTER"
+#~ msgstr "ABONNIEREN SIE DEN NEWSLETTER"
 
