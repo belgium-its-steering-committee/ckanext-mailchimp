@@ -13,7 +13,7 @@ ckanext-mailchimp
 Requirements
 ------------
 
-tested with CKAN 2.8.3
+Tested with CKAN 2.8.3
 
 
 ------------
