@@ -1,32 +1,4 @@
-.. You should enable this project on travis-ci.org and coveralls.io to make
-   these badges work. The necessary Travis and Coverage config files have been
-   generated for you.
 
-.. image:: https://travis-ci.org//ckanext-mailchimp.svg?branch=master
-    :target: https://travis-ci.org//ckanext-mailchimp
-
-.. image:: https://coveralls.io/repos//ckanext-mailchimp/badge.svg
-  :target: https://coveralls.io/r//ckanext-mailchimp
-
-.. image:: https://pypip.in/download/ckanext-mailchimp/badge.svg
-    :target: https://pypi.python.org/pypi//ckanext-mailchimp/
-    :alt: Downloads
-
-.. image:: https://pypip.in/version/ckanext-mailchimp/badge.svg
-    :target: https://pypi.python.org/pypi/ckanext-mailchimp/
-    :alt: Latest Version
-
-.. image:: https://pypip.in/py_versions/ckanext-mailchimp/badge.svg
-    :target: https://pypi.python.org/pypi/ckanext-mailchimp/
-    :alt: Supported Python versions
-
-.. image:: https://pypip.in/status/ckanext-mailchimp/badge.svg
-    :target: https://pypi.python.org/pypi/ckanext-mailchimp/
-    :alt: Development Status
-
-.. image:: https://pypip.in/license/ckanext-mailchimp/badge.svg
-    :target: https://pypi.python.org/pypi/ckanext-mailchimp/
-    :alt: License
 
 =============
 ckanext-mailchimp
