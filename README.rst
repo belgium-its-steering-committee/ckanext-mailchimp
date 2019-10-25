@@ -61,7 +61,7 @@ Development Installation
 To install ckanext-mailchimp for development, activate your CKAN virtualenv and
 do::
 
-    git clone https://github.com//ckanext-mailchimp.git
+    git clone https://github.com/belgium-its-steering-committee/ckanext-mailchimp.git
     cd ckanext-mailchimp
     python setup.py develop
     pip install -r dev-requirements.txt
