@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ckanext-mailchimp 0.0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-09-20 14:10+0200\n"
+"POT-Creation-Date: 2019-10-18 15:21+0200\n"
 "PO-Revision-Date: 2019-09-20 14:10+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: fr\n"
@@ -21,133 +21,145 @@ msgstr ""
 
 #: ckanext/mailchimp/templates/home/snippets/contact.html:3
 msgid "Subscribe to the mailing list"
-msgstr ""
+msgstr "Inscrivez-vous à la liste de diffusion"
 
 #: ckanext/mailchimp/templates/home/snippets/contact.html:6
 msgid "submit email for newsletter"
-msgstr ""
+msgstr "Indiquez l'e-mail pour la lettre de diffusion"
 
 #: ckanext/mailchimp/templates/home/snippets/contact.html:12
 msgid "Subscribe"
-msgstr ""
+msgstr "Inscrivez-vous"
 
 #: ckanext/mailchimp/templates/home/snippets/newsletter.html:5
-msgid "SUBSCRIBE TO NEWSLETTER"
-msgstr ""
+#: ckanext/mailchimp/templates/home/snippets/newsletter.html:12
+msgid "SUBSCRIBE"
+msgstr "INSCRIVEZ-VOUS"
 
-#: ckanext/mailchimp/templates/home/snippets/newsletter.html:10
-msgid "Enter your email address"
-msgstr ""
+#: ckanext/mailchimp/templates/home/snippets/newsletter.html:6
+#, fuzzy
+#| msgid "Subscribe to newsletter"
+msgid "TO NEWSLETTER"
+msgstr "Inscrivez-vous à la lettre de diffusion"
 
 #: ckanext/mailchimp/templates/home/snippets/newsletter.html:11
-msgid "SUBSCRIBE"
-msgstr ""
+msgid "Enter your email address"
+msgstr "Indiquez votre adresse e-mail"
 
 #: ckanext/mailchimp/templates/user/edit_user_form.html:7
 msgid "Change details"
-msgstr ""
+msgstr "Changer les coordonnées"
 
 #: ckanext/mailchimp/templates/user/edit_user_form.html:8
 #: ckanext/mailchimp/templates/user/new_user_form.html:5
 msgid "Username"
-msgstr ""
+msgstr "Nom d'utilisateur"
 
 #: ckanext/mailchimp/templates/user/edit_user_form.html:10
 msgid "Full name"
-msgstr ""
+msgstr "Nom complet"
 
 #: ckanext/mailchimp/templates/user/edit_user_form.html:10
 msgid "eg. Joe Bloggs"
-msgstr ""
+msgstr "ex. Joe Bloggs"
 
 #: ckanext/mailchimp/templates/user/edit_user_form.html:12
 #: ckanext/mailchimp/templates/user/new_user_form.html:7
 msgid "Email"
-msgstr ""
+msgstr "e-mail"
 
 #: ckanext/mailchimp/templates/user/edit_user_form.html:12
 msgid "eg. joe@example.com"
-msgstr ""
+msgstr "ex. joe@exemple.com"
 
 #: ckanext/mailchimp/templates/user/edit_user_form.html:14
 msgid "About"
-msgstr ""
+msgstr "A propos"
 
 #: ckanext/mailchimp/templates/user/edit_user_form.html:14
 msgid "A little information about yourself"
-msgstr ""
+msgstr "Quelques informations sur vous"
 
 #: ckanext/mailchimp/templates/user/edit_user_form.html:17
 msgid "Subscribe to notification emails"
-msgstr ""
+msgstr "Inscrivez-vous aux e-mails de notification"
 
-#: ckanext/mailchimp/templates/user/edit_user_form.html:23
+#: ckanext/mailchimp/templates/user/edit_user_form.html:18
+msgid ""
+"You will receive notification emails from {site_title}, e.g. when you "
+"have new activities on your dashboard."
+msgstr "Vous recevrez des e-mails de notification de {site_title}, par ex. lorsque vous avez de nouvelles activités sur votre tableau de bord."
+
+#: ckanext/mailchimp/templates/user/edit_user_form.html:22
 #: ckanext/mailchimp/templates/user/new_user_form.html:10
 msgid "Subscribe to newsletter"
-msgstr ""
+msgstr "Inscrivez-vous à la lettre de diffusion"
 
-#: ckanext/mailchimp/templates/user/edit_user_form.html:29
+#: ckanext/mailchimp/templates/user/edit_user_form.html:28
 msgid "Change password"
-msgstr ""
+msgstr "Changer le mot de passe"
 
-#: ckanext/mailchimp/templates/user/edit_user_form.html:32
+#: ckanext/mailchimp/templates/user/edit_user_form.html:31
 msgid "Sysadmin Password"
-msgstr ""
+msgstr "Mot de passe administrateur système"
 
-#: ckanext/mailchimp/templates/user/edit_user_form.html:32
+#: ckanext/mailchimp/templates/user/edit_user_form.html:31
 msgid "Old Password"
-msgstr ""
+msgstr "Ancien mot de passe"
 
-#: ckanext/mailchimp/templates/user/edit_user_form.html:40
+#: ckanext/mailchimp/templates/user/edit_user_form.html:39
 #: ckanext/mailchimp/templates/user/new_user_form.html:8
 msgid "Password"
-msgstr ""
+msgstr "Mot de passe"
 
-#: ckanext/mailchimp/templates/user/edit_user_form.html:42
+#: ckanext/mailchimp/templates/user/edit_user_form.html:41
 msgid "Confirm Password"
-msgstr ""
+msgstr "Confirmer mot de passe"
 
-#: ckanext/mailchimp/templates/user/edit_user_form.html:48
+#: ckanext/mailchimp/templates/user/edit_user_form.html:47
 msgid "Are you sure you want to delete this User?"
-msgstr ""
+msgstr "Êtes-vous sûr de vouloir supprimer cet Utilisateur?"
 
-#: ckanext/mailchimp/templates/user/edit_user_form.html:48
+#: ckanext/mailchimp/templates/user/edit_user_form.html:47
 msgid "Delete"
-msgstr ""
+msgstr "Supprimer"
 
-#: ckanext/mailchimp/templates/user/edit_user_form.html:53
+#: ckanext/mailchimp/templates/user/edit_user_form.html:52
 msgid "Are you sure you want to regenerate the API key?"
-msgstr ""
+msgstr "Êtes-vous sûr de vouloir recompiler la clé API?"
 
-#: ckanext/mailchimp/templates/user/edit_user_form.html:53
+#: ckanext/mailchimp/templates/user/edit_user_form.html:52
 msgid "Regenerate API Key"
-msgstr ""
+msgstr "Recompiler clé API"
 
-#: ckanext/mailchimp/templates/user/edit_user_form.html:57
+#: ckanext/mailchimp/templates/user/edit_user_form.html:56
 msgid "Update Profile"
-msgstr ""
+msgstr "Mise à jour du profil"
 
 #: ckanext/mailchimp/templates/user/new_user_form.html:5
 msgid "username"
-msgstr ""
+msgstr "nom d'utilisateur"
 
 #: ckanext/mailchimp/templates/user/new_user_form.html:6
 msgid "Full Name"
-msgstr ""
+msgstr "Nom complet"
 
 #: ckanext/mailchimp/templates/user/new_user_form.html:6
 msgid "Joe Bloggs"
-msgstr ""
+msgstr "Joe Bloggs"
 
 #: ckanext/mailchimp/templates/user/new_user_form.html:7
 msgid "joe@example.com"
-msgstr ""
+msgstr "joe@exemple.com"
 
 #: ckanext/mailchimp/templates/user/new_user_form.html:9
 msgid "Confirm"
-msgstr ""
+msgstr "Confirmer"
 
 #: ckanext/mailchimp/templates/user/new_user_form.html:20
 msgid "Create Account"
-msgstr ""
+msgstr "Créer Compte"
+
+#~ msgid "SUBSCRIBE TO NEWSLETTER"
+#~ msgstr "INSCRIVEZ-VOUS A LA LETTRE DE DIFFUSION"
 
