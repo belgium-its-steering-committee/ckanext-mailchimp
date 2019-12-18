@@ -49,4 +49,4 @@ def mailchimp_add_subscriber(firstname, lastname, email, tags=None):
         if success:
             return False, "You already suscribed to the newsletter."
         else:
-            return False, "An error occurred while adding you to the mailing list."
+            return False, "An error occurred while updating your information."
