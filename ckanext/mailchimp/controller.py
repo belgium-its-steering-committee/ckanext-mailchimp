@@ -52,9 +52,9 @@ class NewsletterController(HomeController):
             names = name_from_email(email)
             success, msg_key = mailchimp_add_subscriber(names[0], names[1], email, tags=["Mailinglist-user"])
             if success:
-                flash_success(translate_flash_message(msg_key, lang()))
+                flash_success(translate_flash_message(msg_key, lang()), allow_html=True)
             else:
-                flash_error(translate_flash_message(msg_key, lang()))
+                flash_error(translate_flash_message(msg_key, lang()), allow_html=True)
         else:
-            flash_error("Please provide a valid email address!")
+            flash_error("Please provide a valid email address!", allow_html=True)
         return super(NewsletterController, self).index()
