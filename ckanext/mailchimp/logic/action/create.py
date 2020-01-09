@@ -39,14 +39,14 @@ def mailchimp_add_subscriber(firstname, lastname, email, tags=None):
             tags
         )
         if success:
-            return True, "Successfully added to mailing list."
+            return True, "SUCCESS"
         else:
-            return False, "An error occurred while adding you to the mailing list."
+            return False, "ERROR_ADD"
     else:
         subscriber_tags = [tag.get('name', '') for tag in subscriber.get('tags', [])]
         merged_tags = subscriber_tags + tags if tags else subscriber_tags
         success = mailchimp_client.update_subscriber_tags(subscriber.get('id', None), merged_tags)
         if success:
-            return False, "You already suscribed to the newsletter."
+            return False, "ALREADY_SUBSCRIBED"
         else:
-            return False, "An error occurred while updating your information."
+            return False, "ERROR_UPDATE"
