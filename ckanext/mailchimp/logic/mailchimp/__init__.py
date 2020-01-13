@@ -39,10 +39,10 @@ class MailChimpClient(object):
         if response.status_code in [200, 201]:
             succes = True
             message = "SUCCESS"
-        elif response.status_code in [400] and response.json.get("title", "") == "Member Exists":
+        elif response.status_code in [400] and response.json().get("title", "") == "Member Exists":
             succes = False
             message = "ALREADY_SUBSCRIBED"
-            self.logger.warn(response.json.get("detail", "Already a list member"))
+            self.logger.warn(response.json().get("detail", "Already a list member"))
         else:
             self.logger.error(response.text)
         return succes, message
