@@ -31,9 +31,6 @@ def mailchimp_add_subscriber(firstname, lastname, email, tags=None):
     )
 
     subscriber = mailchimp_client.find_subscriber_by_email(email)
-    print("#*35")
-    print(subscriber)
-    print("#*35")
     if subscriber is None:
         success = mailchimp_client.create_new_subscriber(
             firstname,
