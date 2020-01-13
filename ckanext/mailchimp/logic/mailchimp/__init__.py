@@ -20,8 +20,6 @@ class MailChimpClient(object):
             return None
 
     def create_new_subscriber(self, firstname, lastname, email, tags=None):
-        succes = False
-        message = "ERROR_ADD"
         create_data = {
             "email_address": email,
             "status": "pending",
@@ -44,6 +42,8 @@ class MailChimpClient(object):
             message = "ALREADY_SUBSCRIBED"
             self.logger.warn(response.json().get("detail", "Already a list member"))
         else:
+            succes = False
+            message = "ERROR_ADD"
             self.logger.error(response.text)
         return succes, message
 
