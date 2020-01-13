@@ -36,10 +36,7 @@ flash_messages = {
         "de": "Sie haben den Newsletter bereits abonniert."
     },
     "ERROR_UPDATE": {
-        "en": "An error occurred while updating your information.",
-        "nl": "An error occurred while updating your information.",
-        "fr": "An error occurred while updating your information.",
-        "de": "An error occurred while updating your information."
+        "en": "An error occurred while updating your information."
     }
 }
 
