@@ -30,10 +30,10 @@ flash_messages = {
         "de": "Beim Hinzufügen zur Mailingliste ist ein Fehler aufgetreten."
     },
     "ALREADY_SUBSCRIBED": {
-        "en", "You already subscribed to the newsletter.",
-        "nl", "U bent reeds ingeschreven op de mailinglijst.",
-        "fr", "Vous êtes déjà abonné à la newsletter.",
-        "de", "Sie haben den Newsletter bereits abonniert."
+        "en": "You already subscribed to the newsletter.",
+        "nl": "U bent reeds ingeschreven op de mailinglijst.",
+        "fr": "Vous êtes déjà abonné à la newsletter.",
+        "de": "Sie haben den Newsletter bereits abonniert."
     },
     "ERROR_UPDATE": {
         "en": "An error occurred while updating your information.",
@@ -46,10 +46,6 @@ flash_messages = {
 
 def translate_flash_message(msg_key, lang):
     msg = flash_messages.get(msg_key, {})
-    print("#"*35)
-    print(msg_key)
-    print(msg)
-    print("#"*35)
     if lang in msg:
         msg_translated = msg.get(lang, "An error occurred")
     else:
