@@ -14,6 +14,9 @@ class MailChimpClient(object):
     def find_subscriber_by_email(self, email):
         response = requests.get("{0}/search-members?query={1}".format(self.base_url, email), headers=self.headers)
         response_obj = response.json()
+        print("#*35")
+        print(response_obj)
+        print("#*35")
         if response.status_code == 200 and len(response_obj["exact_matches"]["members"]) >= 1:
             return response_obj["exact_matches"]["members"][0]
         else:
