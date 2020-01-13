@@ -24,19 +24,32 @@ flash_messages = {
               "kontaktiere uns per <a href='mailto:contact@transportdata.be'>contact@transportdata.be</a>  "
     },
     "ERROR_ADD": {
-        "en": "An error occurred while adding you to the mailing list."
+        "en": "An error occurred while adding you to the mailing list.",
+        "nl": "Er is een fout opgetreden bij het toevoegen aan de mailinglijst.",
+        "fr": "Une erreur s'est produite lors de votre ajout à la liste de diffusion.",
+        "de": "Beim Hinzufügen zur Mailingliste ist ein Fehler aufgetreten."
     },
     "ALREADY_SUBSCRIBED": {
-        "en", "You already subscribed to the newsletter."
+        "en", "You already subscribed to the newsletter.",
+        "nl", "U bent reeds ingeschreven op de mailinglijst.",
+        "fr", "Vous êtes déjà abonné à la newsletter.",
+        "de", "Sie haben den Newsletter bereits abonniert."
     },
     "ERROR_UPDATE": {
-        "en": "An error occurred while updating your information."
+        "en": "An error occurred while updating your information.",
+        "nl": "An error occurred while updating your information.",
+        "fr": "An error occurred while updating your information.",
+        "de": "An error occurred while updating your information."
     }
 }
 
 
 def translate_flash_message(msg_key, lang):
     msg = flash_messages.get(msg_key, {})
+    print("#"*35)
+    print(msg_key)
+    print(msg)
+    print("#"*35)
     if lang in msg:
         msg_translated = msg.get(lang, "An error occurred")
     else:
