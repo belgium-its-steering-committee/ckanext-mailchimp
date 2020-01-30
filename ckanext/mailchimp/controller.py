@@ -36,7 +36,16 @@ flash_messages = {
         "de": "Sie haben den Newsletter bereits abonniert."
     },
     "ERROR_UPDATE": {
-        "en": "An error occurred while updating your information."
+        "en": "An error occurred while updating your information.",
+        "nl": "Er is een fout opgetreden tijdens het updaten van uw informatie",
+        "fr": "Une erreur s'est produite lors de la mise à jour de vos informations.",
+        "de": "Beim Aktualisieren Ihrer Informationen ist ein Fehler aufgetreten."
+    },
+    "ERROR_NOT_VALID": {
+        "en": "Please provide a valid email address!",
+        "nl": "Gelieve een geldig email adres op te geven!",
+        "fr": "Veuillez fournir une adresse email valide!",
+        "de": "Bitte geben Sie eine gültige E-Mail Adresse an!"
     }
 }
 
@@ -62,5 +71,5 @@ class NewsletterController(HomeController):
             else:
                 flash_error(translate_flash_message(msg_key, lang()), allow_html=True)
         else:
-            flash_error("Please provide a valid email address!", allow_html=True)
+            flash_error(translate_flash_message("ERROR_NOT_VALID", lang()), allow_html=True)
         return super(NewsletterController, self).index()
