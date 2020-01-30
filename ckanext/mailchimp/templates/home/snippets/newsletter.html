@@ -7,9 +7,10 @@
         </div>
     </div>
     <div class="mt-5px">
+        <!-- language aware -->
         <form id="subscribe-mailinglist-form" class="dataset-form" method="post" action="/{{h.lang()}}/newsletter/subscribe">
-        <input id="contact-email" name="email" class="input-email p-0" placeholder="{{ _('Enter your email address') }}" type="text"  value="" autocomplete="off">
-        <button class="bt-large button-width button-height-34px" name="save" type="submit">{{ _('SUBSCRIBE') }}</button>
-             </form>
+            <input id="contact-email" name="email" class="input-email p-0" placeholder="{{ _('Enter your email address') }}" type="text"  value="" autocomplete="off">
+            <button class="bt-large button-width button-height-34px" name="save" type="submit">{{ _('SUBSCRIBE') }}</button>
+        </form>
     </div>
 </div>
