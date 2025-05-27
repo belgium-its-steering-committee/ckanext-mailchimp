@@ -1,7 +1,7 @@
 # coding=utf-8
+import ckan.plugins.toolkit as tk
 from ckan.common import request
 from ckan.lib.helpers import flash_success, flash_error, lang
-from validate_email import validate_email
 
 from ckanext.mailchimp.logic.action.create import mailchimp_add_subscriber
 from ckanext.mailchimp.util import name_from_email
@@ -59,7 +59,11 @@ def translate_flash_message(msg_key, lang):
 def subscribe():
     email = request.form.get('email') or request.args.get('email')
 
-    if email and validate_email(email):
+    _, errors = tk.navl_validate(
+        {"email": tk.get_validator("email_validator")}
+    )
+
+    if email and not errors:
         first, last = name_from_email(email)
         success, msg_key = mailchimp_add_subscriber(first, last, email, tags=["Mailinglist-user"])
         if success:
