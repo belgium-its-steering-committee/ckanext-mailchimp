@@ -1,6 +1,5 @@
 # coding=utf-8
 from ckan.common import request
-from ckan.controllers.home import HomeController
 from ckan.lib.helpers import flash_success, flash_error, lang
 from validate_email import validate_email
 
@@ -57,18 +56,17 @@ def translate_flash_message(msg_key, lang):
         msg_translated = msg.get("en", "An error occurred")
     return msg_translated
 
+def subscribe():
+    email = request.form.get('email') or request.args.get('email')
 
-class NewsletterController(HomeController):
-
-    def subscribe(self):
-        email = request.params.get('email', None)
-        if email and validate_email(email):
-            names = name_from_email(email)
-            success, msg_key = mailchimp_add_subscriber(names[0], names[1], email, tags=["Mailinglist-user"])
-            if success:
-                flash_success(translate_flash_message(msg_key, lang()), allow_html=True)
-            else:
-                flash_error(translate_flash_message(msg_key, lang()), allow_html=True)
+    if email and validate_email(email):
+        first, last = name_from_email(email)
+        success, msg_key = mailchimp_add_subscriber(first, last, email, tags=["Mailinglist-user"])
+        if success:
+            flash_success(translate_flash_message(msg_key, lang()), allow_html=True)
         else:
-            flash_error(translate_flash_message("ERROR_NOT_VALID", lang()), allow_html=True)
-        return super(NewsletterController, self).index()
+            flash_error(translate_flash_message(msg_key, lang()), allow_html=True)
+    else:
+        flash_error(translate_flash_message("ERROR_NOT_VALID", lang()), allow_html=True)
+
+    return redirect(url_for("home.index"))
