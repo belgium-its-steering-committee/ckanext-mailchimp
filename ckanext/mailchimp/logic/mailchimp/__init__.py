@@ -64,4 +64,6 @@ class MailChimpClient(object):
             )
         if response.status_code not in [200, 201, 204]:
             self.logger.error(response.text)
-        return True if response.status_code in [200, 201, 204] else False
+            return False
+        
+        return True
