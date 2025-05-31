@@ -2,5 +2,6 @@
 
 {% block extra_fields %}
   {{ super() }}
+  {{ form.hidden("should-update-newsletter", value="true") }} {# Super hacky, we need to know when update_user is called from this form so we can update mail preferences. #}
   {{ form.checkbox("newsletter", id="field-newsletter", label=_("Subscribe to newsletter"), checked=true, value='subscribed', classes=["control-medium"]) }}
 {% endblock %}
