@@ -8,9 +8,9 @@ from ckanext.mailchimp.util import name_splitter
 def mailchimp_user_create(context, data_dict):
     user = user_create(context, data_dict)
 
-    if user is not None and data_dict is not None and data_dict.get('newsletter', None) == 'subscribed':
-        split_names = name_splitter(data_dict.get('fullname', data_dict.get('name', None)))
-        mailchimp_add_subscriber(split_names[0], split_names[1], data_dict.get('email', None), tags=["NAP-user"])
+    if user and (data_dict or {}).get('newsletter') == 'subscribed':
+        first, last = name_splitter(data_dict.get('fullname', data_dict.get('name')))
+        mailchimp_add_subscriber(first, last, data_dict.get('email'), tags=["NAP-user"])
     return user
 
 
@@ -25,13 +25,13 @@ def mailchimp_add_subscriber(firstname, lastname, email, tags=None):
     :return: True if successful, False if not
     """
     mailchimp_client = MailChimpClient(
-        api_key=config.get('ckan.mailchimp.api_key', None),
-        base_url=config.get('ckan.mailchimp.base_url', None),
-        member_list_id=config.get('ckan.mailchimp.member_list_id', None)
+        api_key=config.get('ckan.mailchimp.api_key'),
+        base_url=config.get('ckan.mailchimp.base_url'),
+        member_list_id=config.get('ckan.mailchimp.member_list_id')
     )
 
     subscriber = mailchimp_client.find_subscriber_by_email(email)
-    if subscriber is None:
+    if not subscriber:
         success, message = mailchimp_client.create_new_subscriber(
             firstname,
             lastname,
@@ -42,7 +42,7 @@ def mailchimp_add_subscriber(firstname, lastname, email, tags=None):
     else:
         subscriber_tags = [tag.get('name', '') for tag in subscriber.get('tags', [])]
         merged_tags = subscriber_tags + tags if tags else subscriber_tags
-        success = mailchimp_client.update_subscriber_tags(subscriber.get('id', None), merged_tags)
+        success = mailchimp_client.update_subscriber_tags(subscriber.get('id'), merged_tags)
         if success:
             return False, "ALREADY_SUBSCRIBED"
         else:
