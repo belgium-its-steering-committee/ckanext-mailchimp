@@ -18,6 +18,7 @@ def get_blueprint():
     return bp
 
 
+# TODO: Add IConfigDeclaration implementation for the 3 config options
 class MailchimpPlugin(plugins.SingletonPlugin,  DefaultTranslation):
     plugins.implements(plugins.ITranslation)
     plugins.implements(plugins.IConfigurer, inherit=True)
