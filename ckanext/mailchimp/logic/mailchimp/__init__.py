@@ -6,18 +6,20 @@ import requests
 class MailChimpClient(object):
 
     def __init__(self, api_key, base_url, member_list_id):
+        assert api_key, "An API key must be supplied"
+        assert base_url, "A base URL must be supplied"
+        assert member_list_id, "A member list ID must be supplied"
+
         self.base_url = base_url
         self.member_list_id = member_list_id
         self.headers = {"Authorization": "apikey {0}".format(api_key)}
         self.logger = logging.getLogger(__name__)
 
     def find_subscriber_by_email(self, email):
-        response = requests.get("{0}/search-members?query={1}".format(self.base_url, email), headers=self.headers)
+        response = requests.get(f"{self.base_url}/search-members?query={email}", headers=self.headers)
         response_obj = response.json()
         if response.status_code == 200 and len(response_obj["exact_matches"]["members"]) >= 1:
             return response_obj["exact_matches"]["members"][0]
-        else:
-            return None
 
     def create_new_subscriber(self, firstname, lastname, email, tags=None):
         create_data = {
@@ -32,7 +34,7 @@ class MailChimpClient(object):
             create_data["tags"] = []
             for tag in tags:
                 create_data["tags"].append(tag)
-        response = requests.post("{0}/lists/{1}/members".format(self.base_url, self.member_list_id),
+        response = requests.post(f"{self.base_url}/lists/{self.member_list_id}/members",
                                  json.dumps(create_data), headers=self.headers)
         if response.status_code in [200, 201]:
             succes = True
@@ -51,14 +53,14 @@ class MailChimpClient(object):
         subscriber = self.find_subscriber_by_email(email)
         if subscriber:
             requests.delete(
-                "{0}/lists/{1}/members/{2}".format(self.base_url, self.member_list_id, subscriber["id"]),
+                f"{self.base_url}/lists/{self.member_list_id}/members/{subscriber['id']}",
                 headers=self.headers
             )
 
     def update_subscriber_tags(self, subscriber_id, tags):
         tag_objects = [{"name": tag, "status": "active"} for tag in tags]
         response = requests.post(
-                "{0}/lists/{1}/members/{2}/tags".format(self.base_url, self.member_list_id, subscriber_id),
+                f"{self.base_url}/lists/{self.member_list_id}/members/{subscriber_id}/tags",
                 json.dumps({"tags": tag_objects}),
                 headers=self.headers
             )
