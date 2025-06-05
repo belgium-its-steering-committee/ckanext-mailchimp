@@ -27,7 +27,6 @@ def mailchimp_user_update(context, data_dict):
         base_url=config.get('ckan.mailchimp.base_url'),
         member_list_id=config.get('ckan.mailchimp.member_list_id')
     )
-
     if data_dict:
         user_email = data_dict.get('email')
         if data_dict.get('newsletter') == 'subscribed':
@@ -40,8 +39,6 @@ def mailchimp_user_update(context, data_dict):
                     first, last, user_email, tags=["NAP-user"]
                 )
         else:
-            # if user is already in mailchimp remove user from mailchimp
-            if client.find_subscriber_by_email(user_email):
-                client.delete_subscriber_by_email(user_email)
+            client.delete_subscriber_by_email(user_email)
 
     return user

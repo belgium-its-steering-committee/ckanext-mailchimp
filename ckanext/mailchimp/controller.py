@@ -60,7 +60,8 @@ def subscribe():
     email = request.form.get('email') or request.args.get('email')
 
     _, errors = tk.navl_validate(
-        {"email": tk.get_validator("email_validator")}
+        {"email": email },
+        {"email": [tk.get_validator("email_validator")]}
     )
 
     if email and not errors:
@@ -73,4 +74,4 @@ def subscribe():
     else:
         flash_error(translate_flash_message("ERROR_NOT_VALID", lang()), allow_html=True)
 
-    return redirect(url_for("home.index"))
+    return tk.redirect_to(tk.url_for("home.index"))
