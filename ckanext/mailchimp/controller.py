@@ -1,50 +1,49 @@
 # coding=utf-8
+import ckan.plugins.toolkit as tk
 from ckan.common import request
-from ckan.controllers.home import HomeController
 from ckan.lib.helpers import flash_success, flash_error, lang
-from validate_email import validate_email
 
 from ckanext.mailchimp.logic.action.create import mailchimp_add_subscriber
 from ckanext.mailchimp.util import name_from_email
 
 flash_messages = {
     "SUCCESS": {
-        "en": u"A confirmation email was sent to you to verify your email address. Please check your spam folder if "
-              u"you did not receive this email. If the problem persists, contact us at <a "
-              u"href='mailto:contact@transportdata.be'>contact@transportdata.be</a>",
-        "nl": u"Een bevestigingsmail werd verstuurd naar uw email adres. Controleer uw spam folder indien u deze niet "
-              u"ontvangen heeft. Bij verdere problemen kan u ons contacteren via <a "
-              u"href='mailto:contact@transportdata.be'>contact@transportdata.be</a> ",
-        "fr": u"Nous vous avons envoyé un mail de confirmation. Si vous ne le voyez pas, vérifiez dans vos spam s’il "
-              u"ne s’y trouve pas. Si le problème persiste, prenez contact avec nous via <a "
-              u"href='mailto:contact@transportdata.be'>contact@transportdata.be</a> ",
-        "de": u"Eine E-Mail wurde an Sie gesendet, um Ihre E-Mail-Adresse zu bestätigen. Bitte überprüfen Sie auch "
-              u"Ihren Spam-Ordner wenn Sie diese E-Mail nicht erhalten haben. Wenn das Problem weiterhin besteht, "
-              u"kontaktiere uns per <a href='mailto:contact@transportdata.be'>contact@transportdata.be</a>  "
+        "en": "A confirmation email was sent to you to verify your email address. Please check your spam folder if "
+              "you did not receive this email. If the problem persists, contact us at <a "
+              "href='mailto:contact@transportdata.be'>contact@transportdata.be</a>",
+        "nl": "Een bevestigingsmail werd verstuurd naar uw email adres. Controleer uw spam folder indien u deze niet "
+              "ontvangen heeft. Bij verdere problemen kan u ons contacteren via <a "
+              "href='mailto:contact@transportdata.be'>contact@transportdata.be</a> ",
+        "fr": "Nous vous avons envoyé un mail de confirmation. Si vous ne le voyez pas, vérifiez dans vos spam s’il "
+              "ne s’y trouve pas. Si le problème persiste, prenez contact avec nous via <a "
+              "href='mailto:contact@transportdata.be'>contact@transportdata.be</a> ",
+        "de": "Eine E-Mail wurde an Sie gesendet, um Ihre E-Mail-Adresse zu bestätigen. Bitte überprüfen Sie auch "
+              "Ihren Spam-Ordner wenn Sie diese E-Mail nicht erhalten haben. Wenn das Problem weiterhin besteht, "
+              "kontaktiere uns per <a href='mailto:contact@transportdata.be'>contact@transportdata.be</a>  "
     },
     "ERROR_ADD": {
-        "en": u"An error occurred while adding you to the mailing list.",
-        "nl": u"Er is een fout opgetreden bij het toevoegen aan de mailinglijst.",
-        "fr": u"Une erreur s'est produite lors de votre ajout à la liste de diffusion.",
-        "de": u"Beim Hinzufügen zur Mailingliste ist ein Fehler aufgetreten."
+        "en": "An error occurred while adding you to the mailing list.",
+        "nl": "Er is een fout opgetreden bij het toevoegen aan de mailinglijst.",
+        "fr": "Une erreur s'est produite lors de votre ajout à la liste de diffusion.",
+        "de": "Beim Hinzufügen zur Mailingliste ist ein Fehler aufgetreten."
     },
     "ALREADY_SUBSCRIBED": {
-        "en": u"You already subscribed to the newsletter.",
-        "nl": u"U bent reeds ingeschreven op de mailinglijst.",
-        "fr": u"Vous êtes déjà abonné à la newsletter.",
-        "de": u"Sie haben den Newsletter bereits abonniert."
+        "en": "You already subscribed to the newsletter.",
+        "nl": "U bent reeds ingeschreven op de mailinglijst.",
+        "fr": "Vous êtes déjà abonné à la newsletter.",
+        "de": "Sie haben den Newsletter bereits abonniert."
     },
     "ERROR_UPDATE": {
-        "en": u"An error occurred while updating your information.",
-        "nl": u"Er is een fout opgetreden tijdens het updaten van uw informatie",
-        "fr": u"Une erreur s'est produite lors de la mise à jour de vos informations.",
-        "de": u"Beim Aktualisieren Ihrer Informationen ist ein Fehler aufgetreten."
+        "en": "An error occurred while updating your information.",
+        "nl": "Er is een fout opgetreden tijdens het updaten van uw informatie",
+        "fr": "Une erreur s'est produite lors de la mise à jour de vos informations.",
+        "de": "Beim Aktualisieren Ihrer Informationen ist ein Fehler aufgetreten."
     },
     "ERROR_NOT_VALID": {
-        "en": u"Please provide a valid email address!",
-        "nl": u"Gelieve een geldig email adres op te geven!",
-        "fr": u"Veuillez fournir une adresse email valide!",
-        "de": u"Bitte geben Sie eine gültige E-Mail Adresse an!"
+        "en": "Please provide a valid email address!",
+        "nl": "Gelieve een geldig email adres op te geven!",
+        "fr": "Veuillez fournir une adresse email valide!",
+        "de": "Bitte geben Sie eine gültige E-Mail Adresse an!"
     }
 }
 
@@ -57,18 +56,22 @@ def translate_flash_message(msg_key, lang):
         msg_translated = msg.get("en", "An error occurred")
     return msg_translated
 
+def subscribe():
+    email = request.form.get('email') or request.args.get('email')
 
-class NewsletterController(HomeController):
+    _, errors = tk.navl_validate(
+        {"email": email },
+        {"email": [tk.get_validator("email_validator")]}
+    )
 
-    def subscribe(self):
-        email = request.params.get('email', None)
-        if email and validate_email(email):
-            names = name_from_email(email)
-            success, msg_key = mailchimp_add_subscriber(names[0], names[1], email, tags=["Mailinglist-user"])
-            if success:
-                flash_success(translate_flash_message(msg_key, lang()), allow_html=True)
-            else:
-                flash_error(translate_flash_message(msg_key, lang()), allow_html=True)
+    if email and not errors:
+        first, last = name_from_email(email)
+        success, msg_key = mailchimp_add_subscriber(first, last, email, tags=["Mailinglist-user"])
+        if success:
+            flash_success(translate_flash_message(msg_key, lang()), allow_html=True)
         else:
-            flash_error(translate_flash_message("ERROR_NOT_VALID", lang()), allow_html=True)
-        return super(NewsletterController, self).index()
+            flash_error(translate_flash_message(msg_key, lang()), allow_html=True)
+    else:
+        flash_error(translate_flash_message("ERROR_NOT_VALID", lang()), allow_html=True)
+
+    return tk.redirect_to(tk.url_for("home.index"))
