@@ -1,3 +1,4 @@
+import hashlib
 import json
 import logging
 import requests
@@ -52,18 +53,15 @@ class MailChimpClient(object):
         return subscriber
 
     def _get_subscriber_by_email(self, email):
-        response = requests.get(f"{self.base_url}/search-members?query={email}", headers=self.headers)
-        response_obj = response.json()
+        # use email hash to avoid encoding issues with e.g. '+' in email address
+        subscriber_hash = hashlib.md5(email.lower().encode('utf-8')).hexdigest()
+        
+        response = requests.get(
+            f"{self.base_url}/lists/{self.member_list_id}/members/{subscriber_hash}", 
+            headers=self.headers
+        )
         if response.status_code == 200:
-          if len(response_obj["exact_matches"]["members"]) >= 1:
-            return response_obj["exact_matches"]["members"][0]
-          elif len(response_obj["full_search"]["members"]) >= 1:
-            # This endpoint does not count email addresses with a '+' as a, exact match,
-            # but will still show them in full_search. So check for exact matches in full_search too.
-            # This might be mailchimp stripping away the '+' part, or something else.
-            for member in response_obj["full_search"]["members"]:
-                if member.get("email_address") == email:
-                    return member
+          return response.json()
 
         return None
 
