@@ -5,9 +5,11 @@
   {{ form.hidden("should-update-newsletter", value="true") }} {# Super hacky, we need to know when update_user is called from this form so we can update mail preferences. #}
   {% set is_subscribed = h.mailchimp_is_user_subscribed(data['email']) %}
   {% set is_pending = h.mailchimp_is_user_pending(data['email']) %}
+  {# pending user can't be removed by the api #}
   {% call form.checkbox("newsletter", id="field-newsletter",
      label=_("Subscribe to newsletter"),
      checked=is_subscribed or is_pending,
+     attrs={'disabled': 'disabled'} if is_pending else {},  
      value='subscribed', classes=["control-medium"]) %}
     {% if is_pending %}
       {{ form.info(_("An email has been sent to you to confirm your subscription.")) }}
