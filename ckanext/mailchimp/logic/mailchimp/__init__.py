@@ -22,6 +22,7 @@ class MailChimpClient(object):
     STATUS_SUBSCRIBED = "subscribed"
     STATUS_PENDING = "pending"
     STATUS_ARCHIVED = "archived"
+    STATUS_UNSUBSCRIBED = "unsubscribed"
     def __init__(self, api_key, base_url, member_list_id):
         assert api_key, "An API key must be supplied"
         assert base_url, "A base URL must be supplied"
@@ -69,11 +70,17 @@ class MailChimpClient(object):
         subscriber = self.find_subscriber_by_email(email)
         if subscriber and subscriber.get("status") == self.STATUS_ARCHIVED:
             # user was subscribed in the past and unsubbed, making them archived. 
-            # Resubscribe via status change. This is set to "pending" instead of "subscribed" so
-            # the user has to reconfirm their subscription. This avoids users using someone else's email address
-            # to subscribe them without their consent.
+            # Resubscribe via status change. This is to "subscribed".
+            # It would be better to set to "pending" and have a new confirmation email sent,
+            # but mailchimp will not sent this confirmation if the resubscribe was too recent.
+            # This could put the user in a state that they are not able to resubscribe (status is pending, but no email is sent).
+            # Therefore, set to "subscribed" directly.
+            update_data = {
+                "status": self.STATUS_SUBSCRIBED,
+                **({"tags": tags} if tags is not None else {})
+            }
             response = requests.patch(f"{self.base_url}/lists/{self.member_list_id}/members/{subscriber['contact_id']}",
-                                 json.dumps({"status": self.STATUS_PENDING}), headers=self.headers)
+                                 json.dumps(update_data), headers=self.headers)
         else:
           firstname, lastname = name_splitter(name)
           create_data = {
@@ -82,15 +89,11 @@ class MailChimpClient(object):
               "merge_fields": {
                   "FNAME": firstname,
                   "LNAME": lastname
-              }
+              },
+              **({"tags": tags} if tags is not None else {})
           }
-          if tags and len(tags) > 0:
-              create_data["tags"] = []
-              for tag in tags:
-                  create_data["tags"].append(tag)
           response = requests.post(f"{self.base_url}/lists/{self.member_list_id}/members",
                                   json.dumps(create_data), headers=self.headers)
-
         if response.status_code in [200, 201]:
             succes = True
             message = "SUCCESS"
@@ -101,7 +104,7 @@ class MailChimpClient(object):
         else:
             succes = False
             message = "ERROR_ADD"
-            self.logger.error(response.text)
+            self.logger.error(response.json().get("detail", "Unknown error"))
         return succes, message
 
     def delete_subscriber_by_email(self, email):
