@@ -34,10 +34,12 @@ def mailchimp_user_update(context, data_dict):
 
         if data_dict.get('newsletter') == 'subscribed':
             # if user is not already a subscriber, add them
-            if user_email and not client.is_active_subscriber(user_email):
-                client.create_new_subscriber(
-                    name, user_email, tags=["NAP-user"]
-                )
+            if client.is_active_subscriber(user_email):
+                if previous_email != user_email:
+                  # email might be from a newsletter email, which does not have the NAP-user tag yet
+                  client.update_subscriber_tags(user_email, ["NAP-user"])
+            else:
+              client.create_new_subscriber(name, user_email, tags=["NAP-user"])
         else:
             client.delete_subscriber_by_email(user_email)
 
