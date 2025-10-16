@@ -11,4 +11,4 @@ def name_splitter(fullname):
 
 def name_from_email(email):
     mailname = email.split("@")[0]
-    return name_splitter(mailname.replace(".", " "))
+    return mailname.replace(".", " ")
