@@ -1,7 +1,6 @@
 from ckan.logic.action.create import user_create
-from ckan.common import config
 
-from ckanext.mailchimp.logic.mailchimp import MailChimpClient
+from ckanext.mailchimp.logic.mailchimp import mailchimp_client as get_mailchimp_client
 from ckanext.mailchimp.util import name_splitter
 
 
@@ -24,12 +23,7 @@ def mailchimp_add_subscriber(firstname, lastname, email, tags=None):
     :param tags: array of tags for the subscriber -> https://mailchimp.com/help/manage-tags/
     :return: True if successful, False if not
     """
-    mailchimp_client = MailChimpClient(
-        api_key=config.get('ckan.mailchimp.api_key'),
-        base_url=config.get('ckan.mailchimp.base_url'),
-        member_list_id=config.get('ckan.mailchimp.member_list_id')
-    )
-
+    mailchimp_client = get_mailchimp_client()
     subscriber = mailchimp_client.find_subscriber_by_email(email)
     if not subscriber:
         success, message = mailchimp_client.create_new_subscriber(

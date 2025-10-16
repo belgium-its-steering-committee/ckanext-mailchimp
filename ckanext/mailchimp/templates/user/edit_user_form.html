@@ -3,5 +3,14 @@
 {% block extra_fields %}
   {{ super() }}
   {{ form.hidden("should-update-newsletter", value="true") }} {# Super hacky, we need to know when update_user is called from this form so we can update mail preferences. #}
-  {{ form.checkbox("newsletter", id="field-newsletter", label=_("Subscribe to newsletter"), checked=true, value='subscribed', classes=["control-medium"]) }}
+  {% set is_subscribed = h.mailchimp_is_user_subscribed(data['email']) %}
+  {% set is_pending = h.mailchimp_is_user_pending(data['email']) %}
+  {% call form.checkbox("newsletter", id="field-newsletter",
+     label=_("Subscribe to newsletter"),
+     checked=is_subscribed or is_pending,
+     value='subscribed', classes=["control-medium"]) %}
+    {% if is_pending %}
+      {{ form.info(_("An email has been sent to you to confirm your subscription.")) }}
+    {% endif %}
+  {% endcall %}
 {% endblock %}
