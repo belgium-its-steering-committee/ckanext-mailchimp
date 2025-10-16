@@ -30,6 +30,7 @@ class MailChimpClient(object):
         self.member_list_id = member_list_id
         self.headers = {"Authorization": "apikey {0}".format(api_key)}
         self.logger = logging.getLogger(__name__)
+        self.sub_by_email_cache = {}
 
     def is_active_subscriber(self, email):
         subscriber = self.find_subscriber_by_email(email)
@@ -44,6 +45,13 @@ class MailChimpClient(object):
         return subscriber and subscriber.get("status") == self.STATUS_ARCHIVED
 
     def find_subscriber_by_email(self, email):
+        if email in self.sub_by_email_cache:
+            return self.sub_by_email_cache[email]
+        subscriber = self._get_subscriber_by_email(email)
+        self.sub_by_email_cache[email] = subscriber
+        return subscriber
+
+    def _get_subscriber_by_email(self, email):
         response = requests.get(f"{self.base_url}/search-members?query={email}", headers=self.headers)
         response_obj = response.json()
         if response.status_code == 200:
