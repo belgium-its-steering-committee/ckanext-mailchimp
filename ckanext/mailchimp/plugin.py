@@ -18,10 +18,11 @@ def get_blueprint():
     return bp
 
 
-# TODO: Add IConfigDeclaration implementation for the 3 config options
+@plugins.toolkit.blanket.helpers
 class MailchimpPlugin(plugins.SingletonPlugin,  DefaultTranslation):
     plugins.implements(plugins.ITranslation)
     plugins.implements(plugins.IConfigurer, inherit=True)
+    plugins.implements(plugins.IConfigDeclaration, inherit=True)
     plugins.implements(plugins.IActions, inherit=True)
     plugins.implements(plugins.IBlueprint)
 
@@ -41,3 +42,18 @@ class MailchimpPlugin(plugins.SingletonPlugin,  DefaultTranslation):
     # IBlueprint
     def get_blueprint(self):
         return get_blueprint()
+
+    # IConfigDeclaration
+    def declare_config_options(self, declaration, key):
+        declaration.annotate("Mailchimp integration")
+        group = key.ckan.mailchimp
+
+        declaration.declare(group.api_key, "").set_description(
+            "Mailchimp API key"
+        )
+        declaration.declare(group.base_url, "").set_description(
+            "Mailchimp API base URL (eg: https://<dc>.api.mailchimp.com/3.0)"
+        )
+        declaration.declare(group.member_list_id, "").set_description(
+            "Mailchimp audience/list ID"
+        )
